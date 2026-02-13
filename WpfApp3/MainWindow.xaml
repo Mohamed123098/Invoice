@@ -1,0 +1,67 @@
+﻿<Window x:Class="SimpleInvoice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Simple Invoice" Height="500" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid Background="#F5F5F5">
+        <StackPanel Margin="20" >
+
+            <!-- HEADER -->
+            <TextBlock Text="Create Invoice" FontSize="20" FontWeight="Bold" Foreground="#333"/>
+
+            <!-- CUSTOMER SELECTION -->
+            <StackPanel>
+                <TextBlock Text="Select Customer:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <ComboBox x:Name="CustomerCombo" Height="35" Padding="10"/>
+            </StackPanel>
+
+            <!-- ITEM SELECTION -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="Select Item:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="ItemCombo" Height="35" Padding="10"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                    <TextBlock Text="Quantity:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="QuantityBox" Height="35" Padding="10" Text="1"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text=""/>
+                    <Button x:Name="AddBtn" Content="Add" Height="35" Background="#27AE60" Foreground="White" FontWeight="Bold" Click="AddBtn_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- ITEMS GRID -->
+            <DataGrid x:Name="ItemsGrid" Height="200" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Item" Binding="{Binding ItemName}" Width="*"/>
+                    <DataGridTextColumn Header="Qty" Binding="{Binding Quantity}" Width="60"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="80"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=C}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- TOTALS -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                <TextBlock>
+                    <Run Text="Total: " FontWeight="Bold"/>
+                    <Run x:Name="TotalLabel" Text="$0.00" Foreground="#E74C3C" FontSize="16" FontWeight="Bold"/>
+                </TextBlock>
+            </StackPanel>
+
+            <!-- BUTTONS -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                <Button x:Name="SaveBtn" Content="Save Invoice" Width="120" Height="40" Background="#3498DB" Foreground="White" FontWeight="Bold" Click="SaveBtn_Click"/>
+                <Button x:Name="ViewBtn" Content="View List" Width="120" Height="40" Background="#9B59B6" Foreground="White" FontWeight="Bold" Click="ViewBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
+
